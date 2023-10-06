@@ -1,4 +1,3 @@
-
 pipeline {
   agent any
   environment {
@@ -17,7 +16,7 @@ pipeline {
 
     stage('Autenticacion de azure'){
       steps {
-          sh 'az login --service-principal -u $ID -p $CLIENT -t TID '
+          sh 'az login --service-principal -u $ID -p $CLIENT -t $TID '
             echo "Autenticado a azure con éxito"
         
       }
