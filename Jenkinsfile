@@ -2,44 +2,44 @@
 pipeline {
   agent any
   environment {
-    ID_CLIENT     = credentials('id_client')
-    SECRET_CLIENT = credentials('secret_client')
-    TENANT_ID     = credentials('tenant_id')
+    ID     = credentials('id')
+    CLIENT = credentials('client')
+    TID     = credentials('tid')
   }
 
   stages {
-    stage('Paso para clonar el repositorio') {
+    stage('Clonar repositorio') {
       steps {
-          git url: 'https://github.com/miguemi/iac_prueba.git' 
-          echo "Descargado el repositorio de la IAC"
+          git url: 'https://github.com/Nca46/iac_test.git' 
+          echo "Descargando repositorio"
       }
     }
 
-    stage('Paso para autenticarse con Azure'){
+    stage('Autenticacion de azure'){
       steps {
-          sh 'az login --service-principal -u $ID_CLIENT -p $SECRET_CLIENT -t $TENANT_ID '
+          sh 'az login --service-principal -u $ID -p $CLIENT -t TID '
             echo "Autenticado a azure con éxito"
         
       }
     }
     
-      stage('Paso para desplegar la infraestructura'){
+      stage('Desplegar infraestructura'){
       steps{
          sh('terraform init')
             echo "Terraform init finalizado"
             sh('terraform plan')
             echo "Terraform plan finalizada"
         
-          echo('Despplegando la infraestructura')
+          echo('Infraestructura desplegada')
           sh('terraform apply -auto-approve')
           echo('La infreastructura se desplegó con éxito!')
         
       }
     }
-      stage('Paso para destruir la infraestructura'){
+      stage('Destruir infraestrucutra'){
       steps {
         sh('terraform destroy -auto-approve')
-        echo "Infraestructura destruida con éxito"
+        echo "Infraestructura destruida"
         
       }
     }
