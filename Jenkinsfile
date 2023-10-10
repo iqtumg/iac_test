@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Clonar repositorio') {
       steps {
-          git url: 'https://github.com/Nca46/iac_test.git' 
+          git url: 'https://github.com/iqtumg/iac_test.git' 
           echo "Descargando repositorio"
       }
     }
