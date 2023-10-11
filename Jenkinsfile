@@ -1,9 +1,9 @@
 pipeline {
   agent any
   environment {
-    CLIENT = 'edcd9ff6-fa78-48b6-ab0b-5f02c2145fc5'
-    TENANT = 'bd177737-dc9f-49d5-89fa-af1c0232bfc9'
-    SECRETO = '_ZX8Q~YOFThPgRoHxaqUl3a-Hp-xm1~zznbSgcg4'
+   CLIENT = credentials('CLIENT')
+    TENANT = credentials('TENANT')
+    SECRET = credentials('SECRET')
   }
 
   stages {
