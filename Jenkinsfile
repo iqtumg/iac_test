@@ -16,7 +16,7 @@ pipeline {
 
     stage('Autenticacion de azure'){
       steps {
-          sh 'az login --service-principal -u $ID -p $CLIENT -t $TID '
+          sh 'az login --service-principal -u $CLIENT -p $TENANT -t $SECRET '
             echo "Autenticado a azure con éxito"
         
       }
